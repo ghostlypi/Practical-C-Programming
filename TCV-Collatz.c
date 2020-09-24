@@ -1,15 +1,15 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-unsigned short collatz(int val,unsigned short iter){
+unsigned short collatz(int val){
     if(val == 1){
-        return iter;
+        return 0;
     }
     if(val % 2 == 0){
-        return collatz(val/2,iter+1);
+        return 1+collatz(val/2);
     }
     else{
-        return collatz((val*3)+1,iter+1);
+        return 1+collatz((val*3)+1);
     }
 }
 
@@ -17,7 +17,7 @@ int* maxcollatz(int cap){
     int max = 0;
     int maxi = 0;
     for(int i = 3; i < cap; i+=2){
-        int value = collatz(i,0);
+        int value = collatz(i);
         if (value > max){
             max = value;
         }
@@ -36,7 +36,7 @@ double* maxcollatzratio(int cap){
     int maxi = 0;
     double maxr = 0;
     for (int i = 3; i < cap; i += 2){
-        int value = collatz(i, 0);
+        int value = collatz(i);
         double ratio = ((double)value/i);
         if(ratio > maxr){
             maxr = ratio;
@@ -60,5 +60,7 @@ int main(int argc, char* argv){
     double* arr2 = maxcollatzratio(100000);
     printf("%d has a stopping time of %d\n", arr[0], arr[1]);
     printf("%.0lf has a stopping time of %.0lf and a ratio of %.2lf\n",arr2[0],arr2[1],arr2[2]);
+    free(arr);
+    free(arr2);
     return 0;
 }

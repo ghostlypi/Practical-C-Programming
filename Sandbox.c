@@ -2,6 +2,6 @@
 # include<stdbool.h>
 
 int main(int argc, char* argv){
-    printf("\a");
-    return 0;
+    printf("This is a blank function!\n");
+    return 61;
 }
