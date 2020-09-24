@@ -1,6 +1,9 @@
 # Practical C Programing Class
 
-The Stuff for the C class is here! Check back for more updates!
+The Stuff for the C class is here!
+
+IMORTANT NOTE FOR TIM:
+The Files with a TCV at the start are ment for Tim Review and have the appropriate stylistic changes. Non TCV files may contain excessive ternary & or stylistically unfavorable elements.
 
 Important Notes for Efficiency:
 
