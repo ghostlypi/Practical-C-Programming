@@ -1,5 +1,7 @@
 sandbox: ccsandbox
 	./Sandbox
+sort: ccSort
+	./Sort
 hw: cchw
 	./HelloWorld
 collatz: ccCollatz
@@ -9,6 +11,8 @@ maxOccurences: ccmaxOccurences
 
 ccsandbox:
 	gcc Sandbox.c -o Sandbox
+ccSort:
+	gcc Sort.c -o Sort
 cchw:
 	gcc HelloWorld.c -o HelloWorld
 ccCollatz:
