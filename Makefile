@@ -8,6 +8,8 @@ collatz: ccCollatz
 	./Collatz
 maxOccurences: ccmaxOccurences
 	./MaxOccurences
+stats: ccStats
+	./Stats
 
 ccsandbox:
 	gcc Sandbox.c -o Sandbox
@@ -19,3 +21,5 @@ ccCollatz:
 	gcc Collatz.c -o Collatz
 ccmaxOccurences:
 	gcc MaxOccurences.c -o MaxOccurences
+ccStats:
+	gcc Stats.c -lm -o Stats
