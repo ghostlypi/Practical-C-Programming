@@ -5,19 +5,18 @@
 # include <ctype.h>
 
 size_t my_strspn(const char *s, const char *accept){
-    for(size_t i = 0; i < strlen(s)+1;i++){
+    for(size_t i = 0; i < strlen(s);i++){
         for(size_t j = 0; j < strlen(accept)+1; j++){
             if(s[i] == accept[j]){
                 return i;
             }
         }
     }
-    return -1;
 }
 
 size_t my_strcspn(const char *s, const char *reject){
     size_t index = my_strspn(s,reject);
-    return index != -1 ? index-1 : strlen(s);
+    return s[index] == 0 ? index : index-1;
 }
 
 char *my_strtok(char *s, const char *delims){
@@ -48,6 +47,7 @@ char *my_strtok(char *s, const char *delims){
     
     // ** (3) Your comment here.
     // What is this if-statement doing and why?
+    // If the next value is not null, we will null out the next token for the next iteration
     if(*next_token != '\0') {
         *next_token = '\0';
         next_token++;
