@@ -4,8 +4,7 @@
 # include<string.h>
 
 int most_common_element(int nums [], size_t length){
-    int counts [100];
-    memset(counts,0,length*sizeof(int));
+    int counts [100] = {0};
     for(int i = 0; i < length; i++){
         counts[nums[i]]++;
     }
@@ -15,14 +14,12 @@ int most_common_element(int nums [], size_t length){
         if(counts[i] > max){
             max = counts[i];
             maxi = i;
-        }else if(counts[i] == max & i < maxi){
-            maxi = i;
         }
     }
     return maxi;
 }
 
-int main(int argc, char *argv){
+int main(int argc, char *argv[]){
     int arr [100];
     srand(0);
     puts("{");

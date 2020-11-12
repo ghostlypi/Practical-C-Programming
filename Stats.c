@@ -25,17 +25,21 @@ double stdev(const double *nums, size_t count){
     return sqrt(sum/count);
 }
 
-int main(int argc, char *argv){
-    size_t* count;
-    printf("How many numbers will you enter? ");
-    scanf("%zu", count);
-    double arr[*count];
-    printf("Enter %zu numbers, one per line:\n", *count);
-    for(int i = 0; i< *count; i++){
+void readArr(size_t count, double *arr){
+    for(int i = 0; i< count; i++){
         scanf("%lf", &arr[i]);
     }
-    printf("%lf\n",sum(arr,*count));
-    printf("%lf\n",mean(arr,*count));
-    printf("%lf\n",stdev(arr,*count));
+}
+
+int main(int argc, char *argv[]){
+    size_t count;
+    printf("How many numbers will you enter? ");
+    scanf("%zu", &count);
+    double arr[count];
+    printf("Enter %zu numbers, one per line:\n", count);
+    readArr(count, arr);
+    printf("%lf\n",sum(arr,count));
+    printf("%lf\n",mean(arr,count));
+    printf("%lf\n",stdev(arr,count));
     return 0;
 }
