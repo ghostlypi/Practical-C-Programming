@@ -18,6 +18,7 @@ char *word_to_pig_latin(const char *word) {
   if(isVowel(word[0])){
     size_t len = strlen(word)+4;
     char* out = malloc(sizeof(char)*len);
+    memset(out, 0, sizeof(char)*len);
     if (capped){
       out[0] = toupper(word[0]);
     }else{
