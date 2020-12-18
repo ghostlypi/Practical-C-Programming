@@ -10,6 +10,8 @@ maxOccurences: ccmaxOccurences
 	./MaxOccurences
 stats: ccStats
 	./Stats
+class: ccClass
+	./Class
 
 ccsandbox:
 	gcc Sandbox.c -o Sandbox
@@ -23,3 +25,5 @@ ccmaxOccurences:
 	gcc MaxOccurences.c -o MaxOccurences
 ccStats:
 	gcc Stats.c -lm -o Stats
+ccClass:
+	gcc Class.c -o Class
