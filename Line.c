@@ -3,8 +3,8 @@
 #include <math.h>
 
 typedef struct{
-    int x;
-    int y;
+    double x;
+    double y;
 } point;
 
 typedef struct{
@@ -21,7 +21,7 @@ double length(line l){
 }
 
 double slope(line l){
-    return ((double)(l.p2.y-l.p1.y))/((double)(l.p2.x-l.p1.x));
+    return (l.p2.y-l.p1.y)/(l.p2.x-l.p1.x);
 }
 
 bool point_on_line(line l, point p){
