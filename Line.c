@@ -36,7 +36,7 @@ bool point_on_line(line l, point p){
     }
     */
 
-    return (l.p2.x >= p.x && l.p1.x <= p.x && slope(l)*p.x+l.p1.y == p.y) ? true : false;
+    return (l.p2.x >= p.x && l.p1.x <= p.x && slope(l)*(p.x-l.p1.x)+l.p1.y == p.y) ? true : false;
 }
 
 int main(size_t argc, char *argv){
