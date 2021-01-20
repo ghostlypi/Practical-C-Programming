@@ -13,11 +13,11 @@ class Template{
     }
 
     //Static methods do not have "this" as a parameter
-    void* method1(){
+    void method1(){
         printf("Foo");
     }
 
-    //normal methods have "this"  
+    //normal methods have "this" as a parameter 
     void* method2(this){
         printf("Woo, %d", this.x);
     }
