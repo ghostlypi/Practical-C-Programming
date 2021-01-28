@@ -11,7 +11,7 @@ typedef struct{
 
 typedef struct{
     size_t sides;
-    Point *corners;
+    Point corners[];
 } Polygon;
 
 
@@ -19,24 +19,25 @@ double distance(Point p1, Point p2){
     return sqrt(pow(p2.x-p1.x,2)+pow(p2.y-p1.y,2));
 }
 
-double perimeter(Polygon p){
-    if(p.sides >= 3){
+double perimeter(Polygon *p){
+    if(p->sides >= 3){
         double total = 0;
-        for(size_t i = 1; i < p.sides; i++){
-            total += distance(p.corners[i-1],p.corners[i]);
+        for(size_t i = 1; i < p->sides; i++){
+            total += distance(p->corners[i-1],p->corners[i]);
         }
-        return total + distance(p.corners[0],p.corners[p.sides-1]);
+        return total + distance(p->corners[0],p->corners[p->sides-1]);
     } else {
         return 0;
     }
 }
 
-double area(Polygon p){
-    if(p.sides >= 3){
+double area(Polygon *p){
+    if(p->sides >= 3){
         double sum = 0;
-        for(size_t i = 1; i < p.sides; i++){
-            sum += (p.corners[i].x+p.corners[i-1].x)*(p.corners[i].y-p.corners[i-1].y);
+        for(size_t i = 1; i < p->sides; i++){
+            sum += (p->corners[i].x+p->corners[i-1].x)*(p->corners[i].y-p->corners[i-1].y);
         }
+        sum += (p->corners[0].x+p->corners[p->sides-1].x)*(p->corners[0].y-p->corners[p->sides-1].y);
         return fabs(sum/2);
     } else {
         return 0;
@@ -45,8 +46,8 @@ double area(Polygon p){
 
 //This allows you to skip the second number if it is a 0.
 //I was processing these with the first single digit number as a value, not the number of points
-Point *readPoints(size_t num){
-    Point *arr = malloc(sizeof(Point)*num);
+Point* readPoints(size_t num){
+    Point* arr = malloc(num*sizeof(Point));
     for(size_t i = 0; i <= num; i++){
         char *buffer = malloc(sizeof(char)*255);
         fgets(buffer, sizeof(buffer),stdin);
@@ -77,7 +78,13 @@ void main(size_t argc, char* argv){
     scanf("%lu", &num);
 
     printf("Enter your points, clockwise or counterclockwise,\none per line, with a space between the x and y coordinates.\n");
-    Point *arr = readPoints(num);
-    Polygon poly = { num , arr };
+    //This method takes way more lines of code and runs 0% faster. I would like to file a formal protest. Much better to use a pointer.
+    Point* arr = readPoints(num);
+    Polygon *poly = malloc(sizeof(Polygon)+sizeof(arr));
+    poly->sides = num;
+    for(int i = 0; i < num; i++){
+        poly->corners[i] = arr[i];
+    }
+
     printf("Perimeter: %lf\nArea: %lf\n",perimeter(poly),area(poly));
 }
