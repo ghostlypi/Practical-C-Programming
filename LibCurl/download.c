@@ -4,9 +4,28 @@
 # include <curl/curl.h>
 # include <stdlib.h>
 # include <string.h>
-# include <unistd.h>
+# include <time.h>
+# include <errno.h>
+# include <error.h>
+
+/* msleep(): Sleep for the requested number of milliseconds. */
+int msleep(long msec)
+{
+    struct timespec ts;
+    int res;
+
+    ts.tv_sec = msec / 1000;
+    ts.tv_nsec = (msec % 1000) * 1000000;
+
+    do {
+        res = nanosleep(&ts, &ts);
+    } while (res);
+
+    return res;
+}
 
 int progress_callback(void *ptr, curl_off_t dltotal, curl_off_t dlnow, curl_off_t ultotal, curl_off_t ulnow) {
+    char slow = 0; //SET SLOW TO TRUE TO ENJOY THE PROGRESS BAR ON SMALL DOWNLOADS
     double percent = (dlnow/(double)dltotal*100);
     if(percent != percent){
         percent = 0;
@@ -23,8 +42,8 @@ int progress_callback(void *ptr, curl_off_t dltotal, curl_off_t dlnow, curl_off_
     }
     fprintf(stderr, "]");
     fprintf(stderr, "[%ld/%ldKib](%lf)",dlnow/8192, dltotal/8192, percent);
-    fprintf(stderr, "]");    
-    //sleep(1);
+    fprintf(stderr, "]");  
+    if(slow) msleep(200);
     return 0;
 }
 
