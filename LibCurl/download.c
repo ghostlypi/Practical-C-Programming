@@ -106,8 +106,10 @@ char* download_URL(const char *url){
 int main(int argc, char **argv){
     if(argc < 2){
         fprintf(stderr,"Insufficient Arguments\n");
+        return 22;
     }else if(argc > 2){
         fprintf(stderr,"Too Many Arguments\n");
+        return 7;
     }else{
         fprintf(stdout, "%s", download_URL(argv[1]));
     }
