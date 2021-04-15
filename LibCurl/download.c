@@ -41,7 +41,7 @@ int progress_callback(void *ptr, curl_off_t dltotal, curl_off_t dlnow, curl_off_
         fprintf(stderr, "-");
     }
     fprintf(stderr, "]");
-    fprintf(stderr, "[%ld/%ldKib](%lf)",dlnow/8192, dltotal/8192, percent);
+    fprintf(stderr, "[%ld/%ldKib](%lf)",dlnow/1024, dltotal/1024, percent);
     fprintf(stderr, "]");  
     if(slow) msleep(200);
     return 0;
