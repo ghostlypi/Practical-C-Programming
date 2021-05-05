@@ -11,7 +11,7 @@ void progressbar(__uint32_t num, __uint32_t final){
         fprintf(stderr,"=");
     }
     fprintf(stderr,">");
-    for(int i = percent; i < 100; i++){
+    for(int i = percent; i < 99; i++){
         fprintf(stderr,"-");
     }
     fprintf(stderr, "](%d/%d)", num, final);
@@ -68,5 +68,5 @@ void pi(__uint32_t cycles){
 }
 
 int main(int argc, char** argv){
-    pi(100000);
+    pi(1000);
 }
